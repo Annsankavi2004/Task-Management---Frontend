@@ -1,0 +1,260 @@
+/* =========================================================
+   TEAM MEMBERS — TABLE + TOP ACTIONS
+   Save as: src/styles/team.css
+========================================================= */
+
+/* ---------- Tokens ---------- */
+:root{
+  --bg:#f7f8fc; --surface:#fff; --ink:#0f172a; --muted:#6b7280; --line:#e5e7eb;
+  --brand:#4f46e5; --brand-600:#4338ca; --chip:#f2f4fb;
+  --shadow-xs:0 4px 12px rgba(15,23,42,.06);
+  --shadow-sm:0 8px 20px rgba(15,23,42,.08);
+  --shadow-md:0 18px 40px rgba(15,23,42,.12);
+  --radius:14px; --control-h:44px;
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial}
+button{font:inherit;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+.text-ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* =========================================================
+   TOPBAR (search + clock, no nav links)
+========================================================= */
+.ad-topbar{
+  display:grid !important;
+  grid-template-columns:auto auto 1fr minmax(220px,420px) auto auto !important;
+  grid-template-areas:"hamb logos . search clock profile" !important;
+  gap:14px !important;
+}
+.ad-hamburger{ grid-area:hamb !important; }
+.ad-brand-logos{ grid-area:logos !important; display:flex; align-items:center; gap:8px; }
+.ad-brand-logos img{ height:30px; object-fit:contain; }
+
+/* hide the old top nav on this page */
+.ad-topnav{ display:none !important; }
+
+/* Topbar menu search (searches sidebar items) */
+.ad-search.ad-search--topbar{
+  grid-area:search !important;
+  justify-self: stretch;
+  position:relative;
+  display:flex; align-items:center; gap:8px;
+  min-height:40px;
+  padding:8px 12px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:var(--shadow-xs);
+}
+.ad-search--topbar input{
+  border:0; outline:0; width:100%;
+  font-size:14px; color:var(--ink);
+}
+.ad-search--topbar .ad-search-icons{ opacity:.7; }
+
+/* Suggestions dropdown for the topbar search */
+.ad-search-dd{
+  position:absolute; left:0; right:0; top:calc(100% + 6px);
+  background:#fff; border:1px solid var(--line);
+  border-radius:12px; box-shadow:var(--shadow-md);
+  list-style:none; margin:0; padding:6px;
+  z-index:80; max-height:260px; overflow:auto;
+}
+.ad-search-dd li{
+  display:flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:10px; cursor:pointer;
+}
+.ad-search-dd li:hover, .ad-search-dd li:focus{ background:var(--chip); }
+.ad-search-dd li.empty{ color:var(--muted); cursor:default; }
+.ad-kbd{
+  margin-left:auto; font-size:12px; color:var(--muted);
+  background:var(--chip); border:1px solid var(--line);
+  border-radius:8px; padding:2px 6px;
+}
+
+/* Clock (Asia/Colombo) */
+.ad-clock{
+  grid-area:clock !important;
+  display:flex; align-items:center; gap:8px;
+  min-height:40px;
+  padding:6px 10px;
+  background:var(--chip);
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:var(--shadow-xs);
+  white-space:nowrap;
+  font-weight:600;
+  font-variant-numeric: tabular-nums;
+}
+.ad-profile{ grid-area:profile !important; }
+
+/* Responsive topbar */
+@media (max-width:860px){
+  .ad-topbar{
+    grid-template-columns:auto 1fr auto auto !important;
+    grid-template-areas:"hamb search clock profile" !important;
+    gap:10px !important;
+  }
+  .ad-brand-logos{ display:none !important; }
+}
+@media (max-width:640px){
+  /* hide date, keep the time on very small screens */
+  .ad-clock span:first-of-type{ display:none; }
+}
+
+/* =========================================================
+   KPIs
+========================================================= */
+.tm-kpis{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 8px}
+.tm-kpi{height:var(--control-h);padding:0 12px;display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-xs)}
+.kpi-label{font-size:12px;color:var(--muted);line-height:1}
+.kpi-value{font-size:16px;font-weight:800;line-height:1}
+
+/* =========================================================
+   Top Actions (Search + Buttons)
+========================================================= */
+.ad-actions{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.ad-actions-left{display:flex;gap:12px;flex-wrap:wrap}
+.ad-actions-right{display:flex;gap:12px;flex-wrap:wrap}
+
+/* Buttons */
+.ad-download,.ad-add-btn{
+  height:46px;
+  padding:0 16px;
+  border-radius:14px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+  box-shadow:var(--shadow-sm);
+  border:1px solid transparent;
+}
+
+/* Download button → Light Blue background + Blue text */
+.ad-download{
+  background:#e0f2fe;
+  color:#0369a1;
+  border-color:#bae6fd;
+}
+.ad-download:hover{
+  background:#bae6fd;
+  color:#075985;
+}
+
+/* Add button → Light Green background + Green text */
+.ad-add-btn{
+  background:#dcfce7;
+  color:#047857;
+  border-color:#bbf7d0;
+}
+.ad-add-btn:hover{
+  background:#bbf7d0;
+  color:#065f46;
+}
+
+/* Search */
+.tm-search{
+  height:46px;padding:0 14px;border:1px solid var(--line);border-radius:14px;background:#fff;
+  display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-sm)
+}
+.tm-search input{border:0;outline:0;width:220px;font-size:15px}
+.tm-search svg{color:var(--muted)}
+
+@media(max-width:768px){
+  .ad-actions{flex-direction:column;align-items:stretch}
+  .tm-search{flex:1}
+  .tm-search input{width:100%}
+}
+
+/* =========================================================
+   Team Table
+========================================================= */
+.tm-table{
+  width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm)
+}
+.tm-table thead th{
+  background:#fafbff;color:var(--muted);font-weight:700;padding:12px 14px;border-bottom:1px solid var(--line);text-align:left
+}
+.tm-table td{
+  padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle
+}
+.tm-table tbody tr:hover{background:#fafafa}
+
+/* Avatar */
+.tm-avatar{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden
+}
+.tm-avatar img{width:100%;height:100%;object-fit:cover}
+
+/* Chips */
+.tm-chip{
+  display:inline-flex;align-items:center;gap:6px;min-width:70px;height:28px;padding:0 10px;
+  background:var(--chip);border:1px solid var(--line);border-radius:10px;font-size:12px
+}
+.tm-chip strong{font-size:13px}
+.tm-chip span{font-size:11px;color:var(--muted)}
+.tm-chip.completed{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.25);color:#065f46}
+.tm-chip.pending{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.25);color:#7c3c05}
+
+.tm-empty{padding:18px;text-align:center;color:var(--muted)}
+
+/* =========================================================
+   Modal / Forms
+========================================================= */
+.tm-lab{display:block;font-size:12.5px;color:var(--muted);margin:8px 0 6px}
+.tm-inp{width:100%;height:42px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:#fff;outline:none}
+.tm-inp:focus{border-color:var(--brand-600);box-shadow:0 0 0 3px rgba(91,103,241,.15)}
+.tm-actions-right{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+
+.tm-modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:rgba(15,23,42,.45);padding:16px;animation:tmFade .12s ease-out}
+@keyframes tmFade{from{opacity:0}to{opacity:1}}
+.tm-dialog{width:min(560px,100%);background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-md);padding:18px;animation:tmPop .12s ease-out}
+@keyframes tmPop{from{transform:scale(.98);opacity:.6}to{transform:scale(1);opacity:1}}
+.tm-confirm-msg{color:var(--muted)}
+.view-grid{display:grid;gap:8px}
+
+/* =========================================================
+   Responsive (table → stacked cards)
+========================================================= */
+@media(max-width:680px){
+  .tm-table thead{display:none}
+  .tm-table,.tm-table tbody,.tm-table tr,.tm-table td{display:block;width:100%}
+  .tm-table tr{margin-bottom:12px;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .tm-table td{display:flex;justify-content:space-between;padding:8px 10px;border-bottom:none}
+  .tm-table td::before{content:attr(data-label);font-weight:600;color:var(--muted)}
+}
+
+/* =========================================================
+   Dark mode
+========================================================= */
+[data-theme="dark"]{
+  --bg:#0b1220; --surface:#0f1629; --ink:#e6e8ee; --muted:#94a3b8; --line:#1e293b; --chip:#0c1a33;
+  --shadow-xs:0 4px 12px rgba(0,0,0,.35); --shadow-sm:0 8px 20px rgba(0,0,0,.45); --shadow-md:0 18px 40px rgba(0,0,0,.55);
+}
+[data-theme="dark"] .tm-table thead th{background:#0c172e}
+
+/* Dark mode button consistency */
+[data-theme="dark"] .ad-download{
+  background:#1e3a8a;
+  color:#93c5fd;
+  border-color:#1e40af;
+}
+[data-theme="dark"] .ad-download:hover{
+  background:#1e40af;
+  color:#bfdbfe;
+}
+[data-theme="dark"] .ad-add-btn{
+  background:#064e3b;
+  color:#6ee7b7;
+  border-color:#065f46;
+}
+[data-theme="dark"] .ad-add-btn:hover{
+  background:#065f46;
+  color:#a7f3d0;
+}

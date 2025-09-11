@@ -1,0 +1,173 @@
+/* ======================================
+   MANAGE TASKS — KPIs, Tabs, Cards, Modals
+======================================= */
+
+/* ---- KPIs ---- */
+.mtc-kpis{
+  display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:12px; margin-top:6px;
+}
+.mtc-kpi{
+  background:#fff; border:1px solid var(--line); border-radius:14px;
+  padding:14px; box-shadow:var(--shadow-xs);
+}
+.kpi-label{ font-size:12px; color:var(--muted); letter-spacing:.3px; }
+.kpi-value{ font-size:24px; font-weight:700; margin-top:4px; }
+
+/* ---- Tabs ---- */
+.mtc-tabs{ display:flex; flex-wrap:wrap; gap:8px; }
+.mtc-tab{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border:1px solid var(--line); border-radius:12px;
+  background:#fff; color:var(--ink); cursor:pointer;
+  box-shadow:var(--shadow-xs);
+}
+.mtc-tab .count{
+  background:var(--chip); border:1px solid var(--line); padding:1px 8px; border-radius:999px; font-size:12px;
+}
+.mtc-tab.active{
+  background:linear-gradient(180deg, rgba(91,103,241,.08), rgba(91,103,241,.02));
+  color:var(--brand-700); border-color:#dfe3ff;
+}
+
+/* ---- List + Card ---- */
+.mtc-list{ display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+.mtc-card{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px 14px;
+  box-shadow:var(--shadow-xs);
+}
+.mtc-left{ display:flex; align-items:center; gap:12px; min-width:0; }
+
+/* custom checkbox */
+.tick{ position:relative; display:inline-flex; align-items:center; }
+.tick input{ position:absolute; opacity:0; pointer-events:none; }
+.tickbox{
+  width:18px; height:18px; border-radius:6px; border:1.5px solid #cfd3e3; display:inline-block;
+  background:#fff; box-shadow:inset 0 1px 0 rgba(0,0,0,.03);
+}
+.tick input:checked + .tickbox{
+  border-color:var(--brand-600);
+  background:linear-gradient(180deg, #5b67f1, #4d57de);
+  box-shadow:0 0 0 2px rgba(91,103,241,.15);
+}
+/* ===== Clock (date & time) ===== */
+.ad-clock{
+  display:flex; align-items:center; gap:8px;
+  padding:8px 10px;
+  background:var(--chip);
+  border:1px solid var(--line);
+  border-radius:12px;
+  font-weight:600;
+  color:var(--ink);
+  box-shadow:var(--shadow-xs);
+}
+.ad-clock span{ white-space:nowrap }
+
+/* index number */
+.num{
+  font-weight:600; color:#334155; background:#f1f5f9; border:1px solid #e2e8f0;
+  padding:2px 8px; border-radius:999px; min-width:34px; text-align:center;
+}
+
+.meta{ min-width:0; }
+.meta .title{
+  font-weight:600; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:52vw;
+}
+.meta .sub{ display:flex; align-items:center; gap:10px; margin-top:6px; flex-wrap:wrap; }
+
+/* status + priority */
+.badge{
+  font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid var(--line);
+  background:var(--chip);
+}
+.badge.pending{ color:#92400e; background:#fef3c7; border-color:#fde68a; }
+.badge.inprogress{ color:#1d4ed8; background:#dbeafe; border-color:#bfdbfe; }
+.badge.onhold{ color:#6b7280; background:#f3f4f6; border-color:#e5e7eb; }
+.badge.completed{ color:#065f46; background:#d1fae5; border-color:#a7f3d0; }
+.badge.incomplete{ color:#991b1b; background:#fee2e2; border-color:#fecaca; }
+
+.pill{
+  font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid var(--line);
+  background:#fff;
+}
+.pill.low{ color:#065f46; border-color:#a7f3d0; }
+.pill.medium{ color:#92400e; border-color:#fcd34d; }
+.pill.high{ color:#991b1b; border-color:#fca5a5; }
+
+.due,.assignee{ font-size:12.2px; color:var(--muted); }
+
+/* right side icons */
+.mtc-actions{ display:flex; align-items:center; gap:6px; }
+.mtc-actions .ico{
+  display:grid; place-items:center; width:34px; height:34px;
+  border:1px solid var(--line); border-radius:10px; background:#fff; cursor:pointer;
+}
+.mtc-actions .ico:hover{ background:#f9fafb; }
+
+/* ---- Empty / Loading / Error ---- */
+.mtc-empty{
+  text-align:center; color:var(--muted);
+  background:#fff; border:1px dashed var(--line); border-radius:14px; padding:22px; margin-top:8px;
+}
+.mtc-loading, .mtc-error{
+  display:flex; align-items:center; gap:10px; padding:12px 14px;
+  background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow-xs);
+  margin-top:10px;
+}
+.mtc-error button.mtc-btn{ margin-left:auto; }
+
+/* ---- Forms (Add / Edit) ---- */
+.mtc-lab{ display:block; font-size:12px; color:var(--muted); margin:12px 0 6px; }
+.mtc-row{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; }
+.mtc-inp, .mtc-text, .mtc-dialog select{
+  width:100%; border:1px solid var(--line); border-radius:12px;
+  background:#fff; padding:10px 12px; font:inherit; color:var(--ink);
+}
+.mtc-text{ resize:vertical; }
+
+.mtc-actions-right{ display:flex; gap:10px; justify-content:flex-end; margin-top:14px; }
+.mtc-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--line); background:#fff; padding:10px 12px;
+  border-radius:12px; cursor:pointer;
+}
+.mtc-btn.primary{
+  border-color:var(--brand-600);
+  background:linear-gradient(180deg, #5b67f1, #4d57de);
+  color:#fff; box-shadow:var(--shadow-xs);
+}
+.mtc-btn:disabled{ opacity:.6; cursor:not-allowed; }
+
+/* ---- Modal ---- */
+.mtc-modal{
+  position:fixed; inset:0; background:rgba(17,24,39,.35);
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  z-index:80;
+}
+.mtc-dialog{
+  width:min(640px, 100%); background:#fff; border:1px solid var(--line);
+  border-radius:16px; box-shadow:var(--shadow-md); padding:16px;
+}
+.mtc-confirm-msg{ color:var(--muted); }
+
+/* ---- Accessibility focus ---- */
+a:focus, button:focus, input:focus, select:focus, textarea:focus{
+  outline:2px solid rgba(91,103,241,.35); outline-offset:2px;
+  box-shadow:0 0 0 2px rgba(91,103,241,.1);
+}
+
+/* ---- Tiny tweaks for icons inside buttons ---- */
+button .iconify{ vertical-align:middle; }
+
+/* ---- Responsive ---- */
+@media (max-width: 900px){
+  .mtc-kpis{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .meta .title{ max-width:64vw; }
+}
+@media (max-width: 640px){
+  .mtc-kpis{ grid-template-columns:1fr; }
+  .mtc-row{ grid-template-columns:1fr; }
+  .mtc-card{ align-items:flex-start; }
+  .meta .title{ max-width:100%; white-space:normal; }
+}
